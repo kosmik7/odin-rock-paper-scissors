@@ -1,6 +1,3 @@
-let computerScore = 0
-let humanChoice = 0
-
 function getComputerChoice() {
     randomNumber = Math.floor(Math.random() * 3)
 
@@ -22,22 +19,73 @@ function getHumanChoice() {
         return userInput;
     } else {
         alert('Input invalid: You must type one of "rock", "paper" or "scissors"');
-        return getHumanChoice();
+        getHumanChoice();
     }
 }
 
 function playRound(computerChoice, humanChoice) {
     if (computerChoice === humanChoice) {
-        return `It's a tie! You both threw ${humanChoice}`;
+        return {
+            result: 'tie',
+            message: `It's a tie! You both threw ${humanChoice}.`,
+        }
     } else if (
         (computerChoice === 'rock' && humanChoice === 'scissors') ||
         (computerChoice === 'paper' && humanChoice === 'rock') ||
         (computerChoice === 'scissors' && humanChoice === 'paper')
     ) { 
-        return `You lose! ${computerChoice} beats ${humanChoice}.`;
+        return {
+            result: 'lost',
+            message: `You lose! ${computerChoice} beats ${humanChoice}.`,
+        }
     } else {
-        return `You won! ${humanChoice} beats ${computerChoice}.`;
+        return {
+            result: 'won',
+            message: `You won! ${humanChoice} beats ${computerChoice}.`,
     }
 }
+}
 
-console.log(playRound(getComputerChoice(), getHumanChoice()))
+function playGame() {
+    let computerScore = 0
+    let humanScore = 0
+    let round = 0
+
+    while (round < 5) {
+        const resultRound = playRound(getComputerChoice(), getHumanChoice())
+        switch (resultRound.result) {
+            case 'won':
+                humanScore++;
+                round++;
+                break;
+            case 'lost':
+                computerScore++;
+                round++;
+                break;
+            default:
+                round++
+        }
+
+        let roundMessage = `Round ${round}:\n${resultRound.message} ${humanScore} - ${computerScore}`
+        console.log(roundMessage)
+        alert(roundMessage)
+    }
+
+    displayResult(computerScore, humanScore)
+}
+
+function displayResult(computerScore, humanScore) {
+    let gameMessage
+    if (humanScore > computerScore) {
+        gameMessage = `Game Over!\nYou won! ${humanScore} - ${computerScore}`
+    } else if (humanScore === computerScore) {
+        gameMessage = `Game Over!\nIt's a tie! ${humanScore} - ${computerScore}`
+    } else {
+        gameMessage = `Game Over!\nYou lost! ${humanScore} - ${computerScore}`
+    }
+    
+    console.log(gameMessage)
+    alert(gameMessage)
+}
+
+playGame()
