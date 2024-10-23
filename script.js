@@ -10,3 +10,16 @@ function getComputerChoice() {
             return 'scissors'
     }
 }
+
+function getHumanChoice() {
+    let userInput = prompt('rock, paper or scissors?');
+    userInput = userInput.toLowerCase().replace(/[^a-z]/g, "");
+    
+    if (userInput === 'rock' || userInput === 'paper' || userInput === 'scissors') {
+        return userInput;
+    } else {
+        alert('Input invalid: You must type one of "rock", "paper" or "scissors"');
+        return getHumanChoice();
+    }
+}
+
