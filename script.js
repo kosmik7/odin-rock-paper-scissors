@@ -33,7 +33,7 @@ function playRound(computerChoice, humanChoice) {
         (computerChoice === 'rock' && humanChoice === 'scissors') ||
         (computerChoice === 'paper' && humanChoice === 'rock') ||
         (computerChoice === 'scissors' && humanChoice === 'paper')
-    ) { 
+    ) {
         return {
             result: 'lost',
             message: `You lose! ${computerChoice} beats ${humanChoice}.`,
@@ -42,8 +42,8 @@ function playRound(computerChoice, humanChoice) {
         return {
             result: 'won',
             message: `You won! ${humanChoice} beats ${computerChoice}.`,
+        }
     }
-}
 }
 
 function playGame() {
@@ -83,9 +83,10 @@ function displayResult(computerScore, humanScore) {
     } else {
         gameMessage = `Game Over!\nYou lost! ${humanScore} - ${computerScore}`
     }
-    
+
     console.log(gameMessage)
     alert(gameMessage)
 }
 
-playGame()
+const button = document.getElementById('btn')
+button.addEventListener('click', playGame)
