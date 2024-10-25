@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +9,44 @@
     <script src="script.js" defer></script>
     <title>Rock Paper Scissors</title>
 </head>
+
 <body>
-    <wrapper style="display: flex; justify-content: center;">
-        <button id="btn" style="height: 50px;">Play Rock Paper Scissors</button>
-    </wrapper>
+    <h1>Rock Paper Scissors</h1>
+    <div class="container">
+        <div class="game">
+            <div class="result-icons">
+                <div>
+                    <img id="human-ico" class="ico" src="./images/ico-pending.svg" alt="" width="128px" height="128px">
+                    <span>You</span>
+                </div>
+                <p id="result-score"></p>
+                <div>
+                    <img id="computer-ico" class="ico" src="./images/ico-pending.svg" alt="" width="128px" height="128px">
+                    <span>Computer</span>
+                </div>
+            </div>
+            <div class="result-text">
+                <p id="result-round"></p>
+                <p id="result-game"></p>
+            </div>
+            <div id="choices">
+                <div aria-label="rock">
+                    <img class="ico" src="./images/ico-rock.svg" alt="rock icon" width="96px" height="96px">
+                    <span>Rock</span>
+                </div>
+                <div aria-label="paper">
+                    <img class="ico" src="./images/ico-paper.svg" alt="paper icon" width="96px" height="96px">
+                    <span>Paper</span>
+                </div>
+                <div aria-label="scissors">
+                    <img class="ico" src="./images/ico-scissors.svg" alt="scissors icon" width="96px" height="96px">
+                    <span>Scissors</span>
+                </div>
+            </div>
+            <button id="reset-button">Restart Game</button>
+        </div>
+        <p class="credits">Icons by Adrien Coquet from <a href="https://thenounproject.com/icon/game-3971461" target="_blank" title="Game Icons">Noun Project</a> (CC BY 3.0)</p>
+    </div>
 </body>
+
 </html>
