@@ -88,5 +88,10 @@ function displayResult(computerScore, humanScore) {
     alert(gameMessage)
 }
 
-const button = document.getElementById('btn')
-button.addEventListener('click', playGame)
+const humanElement = document.getElementById('human-ico')
+const computerElement = document.getElementById('computer-ico')
+const roundElement = document.getElementById('result-round')
+const resultElement = document.getElementById('result-game')
+const scoreElement = document.getElementById('result-score')
+const button = document.getElementById('choices')
+const resetButton = document.getElementById('reset-button')
