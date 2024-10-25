@@ -11,18 +11,6 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    let userInput = prompt('rock, paper or scissors?');
-    userInput = userInput.toLowerCase().replace(/[^a-z]/g, "");
-
-    if (userInput === 'rock' || userInput === 'paper' || userInput === 'scissors') {
-        return userInput;
-    } else {
-        alert('Input invalid: You must type one of "rock", "paper" or "scissors"');
-        getHumanChoice();
-    }
-}
-
 function playRound(computerChoice, humanChoice) {
     if (computerChoice === humanChoice) {
         return {
@@ -46,10 +34,10 @@ function playRound(computerChoice, humanChoice) {
     }
 }
 
-function playGame() {
-    let computerScore = 0
-    let humanScore = 0
-    let round = 0
+function playGame(e) {
+    const humanChoice = e.target.closest('div').ariaLabel
+    if (!humanChoice) return
+    
 
     while (round < 5) {
         const resultRound = playRound(getComputerChoice(), getHumanChoice())
@@ -95,3 +83,7 @@ const resultElement = document.getElementById('result-game')
 const scoreElement = document.getElementById('result-score')
 const button = document.getElementById('choices')
 const resetButton = document.getElementById('reset-button')
+
+let computerScore = 0
+let humanScore = 0
+let round = 0
