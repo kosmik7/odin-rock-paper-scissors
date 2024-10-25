@@ -86,20 +86,30 @@ function resetGame() {
     humanScore = 0
     round = 0
 
-    humanElement.src = `./images/ico-pending.svg`
-    computerElement.src = `./images/ico-pending.svg`
-    roundElement.textContent = `Round 0`
-    resultElement.textContent = `Choose`
-    scoreElement.textContent = `0 - 0`
+    humanElement.src = humanElementOriginalContent
+    computerElement.src = computerElementOriginalContent
+    roundElement.textContent = roundElementOriginalContent
+    resultElement.textContent = resultElementOriginalContent
+    scoreElement.textContent = scoreElementOriginalContent
 
     button.addEventListener('click', playGame)
 }
 
 const humanElement = document.getElementById('human-ico')
+const humanElementOriginalContent = humanElement.src
+
 const computerElement = document.getElementById('computer-ico')
+const computerElementOriginalContent = computerElement.src
+
 const roundElement = document.getElementById('result-round')
+const roundElementOriginalContent = roundElement.textContent
+
 const resultElement = document.getElementById('result-game')
+const resultElementOriginalContent = resultElement.textContent
+
 const scoreElement = document.getElementById('result-score')
+const scoreElementOriginalContent = scoreElement.textContent
+
 const button = document.getElementById('choices')
 const resetButton = document.getElementById('reset-button')
 
