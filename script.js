@@ -15,7 +15,7 @@ function playRound(computerChoice, humanChoice) {
     if (computerChoice === humanChoice) {
         return {
             result: 'tie',
-            message: `It's a tie! You both threw ${humanChoice}.`,
+            message: `It's a tie! You both chose ${humanChoice}.`,
         }
     } else if (
         (computerChoice === 'rock' && humanChoice === 'scissors') ||
