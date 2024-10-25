@@ -38,9 +38,9 @@ function playGame(e) {
     const humanChoice = e.target.closest('div').ariaLabel
     if (!humanChoice) return
     
+    const computerChoice = getComputerChoice()
+    const resultRound = playRound(computerChoice, humanChoice)
 
-    while (round < 5) {
-        const resultRound = playRound(getComputerChoice(), getHumanChoice())
         switch (resultRound.result) {
             case 'won':
                 humanScore++;
@@ -54,27 +54,30 @@ function playGame(e) {
                 round++
         }
 
-        let roundMessage = `Round ${round}:\n${resultRound.message} ${humanScore} - ${computerScore}`
-        console.log(roundMessage)
-        alert(roundMessage)
-    }
+    humanElement.src = `./images/ico-${humanChoice}.svg`
+    computerElement.src = `./images/ico-${computerChoice}.svg`
+    roundElement.textContent = `Round ${round}`
+    resultElement.textContent = resultRound.message
+    scoreElement.textContent = `${humanScore} - ${computerScore}`
 
-    displayResult(computerScore, humanScore)
+    if (humanScore >= 5 || computerScore >= 5) {
+        displayResult(computerScore, humanScore, resultElement)
+        return
+    }
 }
 
-function displayResult(computerScore, humanScore) {
-    let gameMessage
+function displayResult(computerScore, humanScore, displayElement) {
     if (humanScore > computerScore) {
-        gameMessage = `Game Over!\nYou won! ${humanScore} - ${computerScore}`
+        displayElement.textContent = `Game Over!\nYou won!`
     } else if (humanScore === computerScore) {
-        gameMessage = `Game Over!\nIt's a tie! ${humanScore} - ${computerScore}`
+        displayElement.textContent = `Game Over!\nIt's a tie!`
     } else {
-        gameMessage = `Game Over!\nYou lost! ${humanScore} - ${computerScore}`
+        displayElement.textContent = `Game Over!\nYou lost!`
     }
-
-    console.log(gameMessage)
-    alert(gameMessage)
+    stopGame()
 }
+
+
 
 const humanElement = document.getElementById('human-ico')
 const computerElement = document.getElementById('computer-ico')
