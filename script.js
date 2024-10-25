@@ -41,18 +41,18 @@ function playGame(e) {
     const computerChoice = getComputerChoice()
     const resultRound = playRound(computerChoice, humanChoice)
 
-        switch (resultRound.result) {
-            case 'won':
-                humanScore++;
-                round++;
-                break;
-            case 'lost':
-                computerScore++;
-                round++;
-                break;
-            default:
-                round++
-        }
+    switch (resultRound.result) {
+        case 'won':
+            humanScore++;
+            round++;
+            break;
+        case 'lost':
+            computerScore++;
+            round++;
+            break;
+        default:
+            round++
+    }
 
     humanElement.src = `./images/ico-${humanChoice}.svg`
     computerElement.src = `./images/ico-${computerChoice}.svg`
@@ -77,7 +77,23 @@ function displayResult(computerScore, humanScore, displayElement) {
     stopGame()
 }
 
+function stopGame() {
+    button.removeEventListener('click', playGame)
+}
 
+function resetGame() {
+    computerScore = 0
+    humanScore = 0
+    round = 0
+
+    humanElement.src = `./images/ico-pending.svg`
+    computerElement.src = `./images/ico-pending.svg`
+    roundElement.textContent = `Round 0`
+    resultElement.textContent = `Choose`
+    scoreElement.textContent = `0 - 0`
+
+    button.addEventListener('click', playGame)
+}
 
 const humanElement = document.getElementById('human-ico')
 const computerElement = document.getElementById('computer-ico')
@@ -90,3 +106,6 @@ const resetButton = document.getElementById('reset-button')
 let computerScore = 0
 let humanScore = 0
 let round = 0
+
+resetButton.addEventListener('click', resetGame)
+resetGame()
